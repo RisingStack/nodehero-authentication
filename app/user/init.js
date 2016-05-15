@@ -1,20 +1,21 @@
-const user = {
-  username: 'test-user',
-  password: 'test-password'
-}
+const passport = require('passport')
 
 function initUser (app) {
-  app.get('/', welcome)
-  app.post('/login', login)
+  app.get('/', renderWelcome)
+  app.get('/profile', passport.authenticationMiddleware(), renderProfile)
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }))
 }
 
-function welcome (req, res) {
+function renderWelcome (req, res) {
   res.render('user/welcome')
 }
 
-function login (req, res) {
+function renderProfile (req, res) {
   res.render('user/profile', {
-    
+    username: req.user.username
   })
 }
 

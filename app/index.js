@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({
   extended: false
 }))
 
+require('./authentication').init(app)
+
 app.use(session({
   store: new RedisStore({
     url: config.redisStore.url
@@ -37,5 +39,6 @@ app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname))
 
 require('./user').init(app)
+require('./note').init(app)
 
 module.exports = app
