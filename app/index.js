@@ -7,20 +7,21 @@ const passport = require('passport')
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
 
+require('dotenv').config();
 const config = require('../config')
 const app = express()
 
 app.use(bodyParser.urlencoded({
   extended: false
 }))
-
-require('./authentication').init(app)
+app.use(bodyParser.json());
 
 app.use(session({
+  secret: 'Secret key',
   store: new RedisStore({
-    url: config.redisStore.url
+    host: config.redisStore.host,
+    port: config.redisStore.port
   }),
-  secret: config.redisStore.secret,
   resave: false,
   saveUninitialized: false
 }))
@@ -38,6 +39,8 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname))
 
+
+require('./authentication').init(app)
 require('./user').init(app)
 require('./note').init(app)
 

@@ -1,8 +1,9 @@
 const config = {}
 
 config.redisStore = {
-  url: process.env.REDIS_STORE_URI,
-  secret: process.env.REDIS_STORE_SECRET
+  host: process.env.REDIS_STORE_HOST,
+  port: process.env.REDIS_STORE_PORT,
+  password: process.env.REDIS_STORE_PASSWORD
 }
 
 module.exports = config
