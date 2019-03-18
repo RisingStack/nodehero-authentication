@@ -8,3 +8,6 @@
 ## Pre requirements
 
 - Running [Redis](https://redis.io/) database
+
+
+New string
