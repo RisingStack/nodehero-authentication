@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/RisingStack/nodehero-authentication#readme",
   "dependencies": {
-    "bcrypt": "1.0.2",
+    "bcrypt": "5.0.0",
     "body-parser": "1.15.1",
     "connect-redis": "3.0.2",
     "express": "4.13.4",
